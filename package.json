@@ -2,18 +2,19 @@
   "name": "archivelint",
   "version": "1.0.0",
   "description": "Find files that don't obey the rules.",
-  "main": "index.js",
+  "main": "archivelint.js",
   "bin": {
     "archivelint": "./index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "file": "^0.2.2",
     "findit": "^2.0.0",
+    "mocha": "^3.4.2",
     "moment": "^2.18.1"
   }
 }
