@@ -2,6 +2,10 @@
   "name": "archivelint",
   "version": "1.0.0",
   "description": "Find files that don't obey the rules.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rpitv/archivelint.git"
+  },
   "main": "archivelint.js",
   "bin": {
     "archivelint": "./index.js"
