@@ -1,6 +1,6 @@
 const findit = require('findit');
 const path = require('path');
-const archivelint = require('archivelint');
+const archivelint = require('./archivelint');
 
 function checkFile(filename) {
 	var checkers = Object.keys(archivelint);

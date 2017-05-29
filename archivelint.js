@@ -1,5 +1,5 @@
 const moment = require('moment');
-const patterns = require('patterns');
+const patterns = require('./patterns');
 
 // Each checkX function (checkFormat, checkBadPatterns, checkIfThen)
 // returns an array of problems it's found. index.js will iterate through
@@ -26,8 +26,8 @@ exports.checkFormat = function(filename) {
 
 exports.checkBadPatterns = function(filename) {
 	var ret = [];
-	for (var i = 0; i < badPatterns.length; i++) {
-		var badPattern = badPatterns[i];
+	for (var i = 0; i < patterns.badPatterns.length; i++) {
+		var badPattern = patterns.badPatterns[i];
 		if (filename.match(badPattern)) {
 			ret.push("matched known bad pattern " + badPattern);
 		}
@@ -38,8 +38,8 @@ exports.checkBadPatterns = function(filename) {
 
 exports.checkIfThen = function(filename) {
 	var ret = [];
-	for (var i = 0; i < ifThenRules.length; i++) {
-		var rule = ifThenRules[i];
+	for (var i = 0; i < patterns.ifThenRules.length; i++) {
+		var rule = patterns.ifThenRules[i];
 		if (
 			filename.match(rule.ifPattern)
 			&& !filename.match(rule.thenPattern)

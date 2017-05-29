@@ -14,3 +14,8 @@ const ifThenRules = [
 		"and be mp4 or mxf files."
 	}
 ];
+
+module.exports = {
+	badPatterns: badPatterns,
+	ifThenRules: ifThenRules,
+};
