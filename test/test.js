@@ -9,6 +9,11 @@ describe('checkFormat', function() {
 		assert.deepEqual(result, []);
 	});
 
+	it('should return incorrect format if the format is not ########_name_etc', function () {
+		var result = archivelint.checkFormat("2017_test.mp4");
+		assert.deepEqual(result, ["incorrect format"]);
+	});
+
 	it('should return incorrect format if there are capital letters', function() {
 		var result = archivelint.checkFormat("20170529_Test.mp4");
 		assert.deepEqual(result, ["incorrect format"]);
@@ -27,20 +32,31 @@ describe('checkFormat', function() {
 
 describe('checkBadPatterns', function() {
 	it('should allow filenames that contain no bad patterns', function() {
-		var result = archivelint.checkBadPatterns('20170529_hockey_st_lawrence.mp4');
+		var result = archivelint.checkBadPatterns('20170529_idiocy.mp4');
 		assert.deepEqual(result, []);
 	});
 
-	it('should not allow filenames that contain a bad pattern', function() {
+	it('should not allow filenames that contain a simple bad pattern', function() {
 		var result = archivelint.checkBadPatterns('20170529_hockey_stl_p1.mp4');
 		assert.deepEqual(result, ["matched known bad pattern /_stl_/"]);
 	});
 
 	it('should flag all bad patterns in a filename', function() {
-		var result = archivelint.checkBadPatterns('20170529_hockey_slu_stl_p1.mp4');
+		var result = archivelint.checkBadPatterns('20170529_hockey_acha_slu_stl_p1.mp4');
 		assert.deepEqual(result, [
 			"matched known bad pattern /_stl_/",
-			"matched known bad pattern /_slu_/"
+			"matched known bad pattern /_slu_/",
+			"matched known bad pattern /_hockey_acha_/"
 		]);
+	});
+
+	it('should not allow filenames that lack a required pattern', function () {
+		var result = archivelint.checkIfThen('20170529_hockey_st_lawrence.mp4');
+		assert.deepEqual(result, ["Hockey must end in _pN or _pN_xN and be mp4 or mxf files."]);
+	});
+
+	it('should not allow filenames that lack a required file extension', function () {
+		var result = archivelint.checkIfThen('20170529_whockey_st_lawrence.avi');
+		assert.deepEqual(result, ["Hockey must end in _pN or _pN_xN and be mp4 or mxf files."]);
 	});
 });
