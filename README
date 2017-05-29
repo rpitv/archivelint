@@ -1,3 +1,16 @@
+## To use
+```
 npm install git://github.com/rpitv/archivelint.git
 cd /tv/Archive
-archivelint
+archivelint [directory]
+```
+
+The directory argument is optional and defaults to the current directory.
+
+## Developers
+```
+git clone git://github.com/rpitv/archivelint.git
+cd archivelint
+npm install
+node index.js [directory]
+```
