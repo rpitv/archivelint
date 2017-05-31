@@ -44,19 +44,39 @@ describe('checkBadPatterns', function() {
 	it('should flag all bad patterns in a filename', function() {
 		var result = archivelint.checkBadPatterns('20170529_hockey_acha_slu_stl_p1.mp4');
 		assert.deepEqual(result, [
+			"'_hockey_acha_' is a bad pattern, '_achahockey_' is preferred",
 			"'_stl_' is a bad pattern, '_st_lawrence_' is preferred",
-			"'_slu_' is a bad pattern, '_st_lawrence_' is preferred",
-			"'_hockey_acha_' is a bad pattern, '_achahockey_' is preferred"
+			"'_slu_' is a bad pattern, '_st_lawrence_' is preferred"
 		]);
 	});
 
-	it('should not allow filenames that lack a required pattern', function () {
-		var result = archivelint.checkIfThen('20170529_hockey_st_lawrence.mp4');
-		assert.deepEqual(result, ['Hockey must end in _pN or _pN_xN and be mp4 or mxf files.']);
+	it('should allow sports that do not need a split', function () {
+		var result = archivelint.checkIfThen('20170529_wdiving.mp4');
+		assert.deepEqual(result, []);
 	});
 
-	it('should not allow filenames that lack a required file extension', function () {
-		var result = archivelint.checkIfThen('20170529_whockey_st_lawrence.avi');
-		assert.deepEqual(result, ['Hockey must end in _pN or _pN_xN and be mp4 or mxf files.']);
+	it('should allow filenames that split correctly', function () {
+		var result = archivelint.checkIfThen('20170529_whockey_uconn_p1.avi');
+		assert.deepEqual(result, []);
+	});
+
+	it('should allow filenames that do intermissions correctly', function () {
+		var result = archivelint.checkIfThen('20170529_whockey_union_p2_x1.avi');
+		assert.deepEqual(result, []);
+	});
+
+	it('should not allow filenames that use the wrong pregame indicator', function () {
+		var result = archivelint.checkIfThen('20170529_football_pre.avi');
+		assert.deepEqual(result, ['sports must end in _p# or _p#_x# if any split is needed']);
+	})
+
+	it('should not allow filenames that use the wrong split character', function () {
+		var result = archivelint.checkIfThen('20170529_football_q1.avi');
+		assert.deepEqual(result, ['sports must end in _p# or _p#_x# if any split is needed']);
+	});
+
+	it('should not allow filenames that use the wrong intermission indicator', function () {
+		var result = archivelint.checkIfThen('20170529_whockey_rit_p1_1.avi');
+		assert.deepEqual(result, ['sports must end in _p# or _p#_x# if any split is needed']);
 	});
 });
