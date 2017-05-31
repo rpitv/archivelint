@@ -23,6 +23,14 @@ const badPatterns = [
 	[/_merch_/, '_usmma_'],
 	[/\d_lowell_/, '_umass_lowell_'],
 	[/_vermont_/, '_uvm_'],
+	[/_rm_/, '_robert_morris_'],
+	[/_urochester_/, '_u_of_r_'],
+	[/_univ_rochester_/, '_u_of_r_'],
+	[/_rochester_/, '_u_of_r_\' or \'_rit_'],
+	[/_univ_michigan_/, '_umich_'],
+	[/_michigan_/, '_umich_\' or \'_michigan_state_'],
+	[/_u_of_m_/, '_umich_'],
+	[/_msu_/, '_minnesota_state_\' or \'_michigan_state_'],
 
 	[/_acapella/, '_acappella'],
 	[/_a_capella/, '_acappella'],
@@ -35,6 +43,7 @@ const badPatterns = [
 	[/_communitysponsoredevent/, '_community_sponsored_event'],
 	[/_players\./, '_players_name_of_show'],
 	[/_rcos\./, '_rcos_name_of_project'],
+	[/_wnl\./, '_wnl_name_of_band'],
 	[/_nuestra\./, '_nuestra_belleza'],
 	[/_rpa_drag\./, '_rpa_drag_show'],
 	[/_drag\./, '_rpa_drag_show'],
@@ -46,9 +55,9 @@ const badPatterns = [
 	[/_jashn_p/, '_paksa_jashn_show_p'],
 	[/\d_jashn_show/, '_paksa_jashn_show'],
 	[/_isa_diwali\./, '_isa_diwali_show'],
-	[/_isa_diwali_p/, 'isa_diwali_show_p'],
+	[/_isa_diwali_p/, '_isa_diwali_show_p'],
 	[/_diwali\./, '_isa_diwali_show'],
-	[/_diwali_p/, 'isa_diwali_show_p'],
+	[/_diwali_p/, '_isa_diwali_show_p'],
 	[/\d_diwali_show/, '_isa_diwali_show'],
 ];
 
@@ -56,7 +65,7 @@ const badPatterns = [
 const ifThenRules = [
 	{
 		ifPattern: /_((w|acha|field)?hockey|w?(soccer|lacrosse|diving|tennis|rugby)|(soft|base|foot|broom|w?basket)ball|curling|quidditch)_/,
-		thenPattern: /_((p\d+(_x\d+)?)\.|(w?diving|broomball))/,
+		thenPattern: /_((p\d+(_x\d+(_[a-z]*)*)?\.)|(w?diving|broomball))/,
 		message: 'sports must end in _p# or _p#_x# if any split is needed'
 	}, {
 		ifPattern: /_umass_/,
