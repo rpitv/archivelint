@@ -1,5 +1,6 @@
 // bad patterns to reject (simple)
 const badPatterns = [
+//	[/bad_pattern_regex/, 'preferred_alternative_string'],
 	[/_stl_/, '_st_lawrence_'],
 	[/_slu_/, '_st_lawrence_'],
 	[/_stlawrence_/, '_st_lawrence_'],
@@ -13,15 +14,15 @@ const badPatterns = [
 	[/_rustypipes/, '_rusty_pipes'],
 	[/_acapella/, '_acappella'],
 	[/_a_capella/, '_acappella'],
-	[/_a_cappella/, '_acappella']
+	[/_a_cappella/, '_acappella'],
 ];
 
 // bad patterns to reject (complex)
 const ifThenRules = [
 	{
-		ifPattern: /_w?hockey_/,
+		ifPattern: /_(w|acha)?hockey_/,
 		thenPattern: /_p\d+(_x\d+)?\.(mp4|mxf)/,
-		message: "Hockey must end in _pN or _pN_xN and be mp4 or mxf files."
+		message: 'Hockey must end in _pN or _pN_xN and be mp4 or mxf files.'
 	}
 ];
 

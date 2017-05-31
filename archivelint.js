@@ -13,12 +13,12 @@ exports.checkFormat = function(filename) {
 	var m = filename.match(pattern);
 
 	if (!m) {
-		return ["incorrect format"];
+		return ['incorrect format'];
 	}
 
 	var datestr = m[1];
 	if (!moment(datestr, 'YYYYMMDD').isValid()) {
-		return ["invalid date"];
+		return ['invalid date'];
 	}
 
 	return [];
@@ -27,7 +27,7 @@ exports.checkFormat = function(filename) {
 exports.checkBadPatterns = function(filename) {
 	var ret = [];
 
-	patterns.badPatterns.forEach(function (badPattern) {
+	patterns.badPatterns.forEach(function(badPattern) {
 		if (filename.match(badPattern[0])) {
 			ret.push("'" + String(badPattern[0]).slice(1, -1) + "' is a bad pattern, '" + badPattern[1] + "' is preferred");
 		}
