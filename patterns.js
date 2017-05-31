@@ -21,6 +21,8 @@ const badPatterns = [
 	[/_pei_/, '_upei_'],
 	[/_minnstate_/, '_minnesota_state_'],
 	[/_merch_/, '_usmma_'],
+	[/\d_lowell_/, '_umass_lowell_'],
+	[/_vermont_/, '_uvm_'],
 
 	[/_acapella/, '_acappella'],
 	[/_a_capella/, '_acappella'],
@@ -28,15 +30,39 @@ const badPatterns = [
 	[/_partialcredit/, '_partial_credit'],
 	[/_rustypipes/, '_rusty_pipes'],
 	[/_dulynoted/, '_duly_noted'],
+	[/_lyrics/, '_rensselyrics'],
+	[/_russel_/, '_russell_'],
+	[/_communitysponsoredevent/, '_community_sponsored_event'],
+	[/_players\./, '_players_name_of_show'],
+	[/_rcos\./, '_rcos_name_of_project'],
+	[/_nuestra\./, '_nuestra_belleza'],
+	[/_rpa_drag\./, '_rpa_drag_show'],
+	[/_drag\./, '_rpa_drag_show'],
+	[/\d_drag_show/, '_rpa_drag_show'],
+	[/\d_drag/, '_rpa_drag_show'],
+	[/_paksa_jashn\./, '_paksa_jashn_show'],
+	[/_paksa_jashn_p/, '_paksa_jashn_show_p'],
+	[/_jashn\./, '_paksa_jashn_show'],
+	[/_jashn_p/, '_paksa_jashn_show_p'],
+	[/\d_jashn_show/, '_paksa_jashn_show'],
+	[/_isa_diwali\./, '_isa_diwali_show'],
+	[/_isa_diwali_p/, 'isa_diwali_show_p'],
+	[/_diwali\./, '_isa_diwali_show'],
+	[/_diwali_p/, 'isa_diwali_show_p'],
+	[/\d_diwali_show/, '_isa_diwali_show'],
 ];
 
 // bad patterns to reject (complex)
 const ifThenRules = [
 	{
 		ifPattern: /_((w|acha|field)?hockey|w?(soccer|lacrosse|diving|tennis|rugby)|(soft|base|foot|broom|w?basket)ball|curling|quidditch)_/,
-		thenPattern: /_((p\d+(_x\d+)?)|(w?diving|broomball))\./,
+		thenPattern: /_((p\d+(_x\d+)?)\.|(w?diving|broomball))/,
 		message: 'sports must end in _p# or _p#_x# if any split is needed'
-	}
+	}, {
+		ifPattern: /_umass_/,
+		thenPattern: /_umass_(amherst|lowell)_/,
+		message: 'umass must be disambiguated'
+	},
 ];
 
 module.exports = {

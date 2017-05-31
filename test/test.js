@@ -79,4 +79,14 @@ describe('checkBadPatterns', function() {
 		var result = archivelint.checkIfThen('20170529_whockey_rit_p1_1.avi');
 		assert.deepEqual(result, ['sports must end in _p# or _p#_x# if any split is needed']);
 	});
+
+	it('should allow disambiguated umass', function () {
+		var result = archivelint.checkIfThen('20170529_hockey_umass_lowell_p1.avi');
+		assert.deepEqual(result, []);
+	});
+
+	it('should not allow ambiguous umass', function () {
+		var result = archivelint.checkIfThen('20170529_umass_p1.avi');
+		assert.deepEqual(result, ['umass must be disambiguated']);
+	});
 });
