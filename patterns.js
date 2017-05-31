@@ -34,7 +34,7 @@ const badPatterns = [
 const ifThenRules = [
 	{
 		ifPattern: /_((w|acha|field)?hockey|w?(soccer|lacrosse|diving|tennis|rugby)|(soft|base|foot|broom|w?basket)ball|curling|quidditch)_/,
-		thenPattern: /_p\d+(_x\d+)?\./,
+		thenPattern: /_((p\d+(_x\d+)?)|(w?diving|broomball))\./,
 		message: 'sports must end in _p# or _p#_x# if any split is needed'
 	}
 ];
