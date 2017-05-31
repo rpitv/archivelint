@@ -26,12 +26,12 @@ exports.checkFormat = function(filename) {
 
 exports.checkBadPatterns = function(filename) {
 	var ret = [];
-	for (var i = 0; i < patterns.badPatterns.length; i++) {
-		var badPattern = patterns.badPatterns[i];
-		if (filename.match(badPattern)) {
-			ret.push("matched known bad pattern " + badPattern);
+
+	patterns.badPatterns.forEach(function (badPattern) {
+		if (filename.match(badPattern[0])) {
+			ret.push("'" + String(badPattern[0]).slice(1, -1) + "' is a bad pattern, '" + badPattern[1] + "' is preferred");
 		}
-	}
+	});
 
 	return ret;
 }

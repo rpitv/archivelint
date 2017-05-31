@@ -38,15 +38,15 @@ describe('checkBadPatterns', function() {
 
 	it('should not allow filenames that contain a simple bad pattern', function() {
 		var result = archivelint.checkBadPatterns('20170529_hockey_stl_p1.mp4');
-		assert.deepEqual(result, ["matched known bad pattern /_stl_/"]);
+		assert.deepEqual(result, ["'_stl_' is a bad pattern, '_st_lawrence_' is preferred"]);
 	});
 
 	it('should flag all bad patterns in a filename', function() {
 		var result = archivelint.checkBadPatterns('20170529_hockey_acha_slu_stl_p1.mp4');
 		assert.deepEqual(result, [
-			"matched known bad pattern /_stl_/",
-			"matched known bad pattern /_slu_/",
-			"matched known bad pattern /_hockey_acha_/"
+			"'_stl_' is a bad pattern, '_st_lawrence_' is preferred",
+			"'_slu_' is a bad pattern, '_st_lawrence_' is preferred",
+			"'_hockey_acha_' is a bad pattern, '_achahockey_' is preferred"
 		]);
 	});
 
