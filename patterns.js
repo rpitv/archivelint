@@ -11,6 +11,7 @@ const badPatterns = [
 	[/_pre\./, '_p0'],
 	[/_pregame\./, '_p0'],
 	[/_pre_game\./, '_p0'],
+	[/_\d+\./, '_p#" or "_p#_x#'],
 
 	[/_stl_/, '_st_lawrence_'],
 	[/_slu_/, '_st_lawrence_'],
@@ -26,11 +27,11 @@ const badPatterns = [
 	[/_rm_/, '_robert_morris_'],
 	[/_urochester_/, '_u_of_r_'],
 	[/_univ_rochester_/, '_u_of_r_'],
-	[/_rochester_/, '_u_of_r_\' or \'_rit_'],
+	[/_rochester_/, '_u_of_r_" or "_rit_'],
 	[/_univ_michigan_/, '_umich_'],
-	[/_michigan_/, '_umich_\' or \'_michigan_state_'],
+	[/_michigan_/, '_umich_" or "_michigan_state_'],
 	[/_u_of_m_/, '_umich_'],
-	[/_msu_/, '_minnesota_state_\' or \'_michigan_state_'],
+	[/_msu_/, '_minnesota_state_" or "_michigan_state_'],
 
 	[/_acapella/, '_acappella'],
 	[/_a_capella/, '_acappella'],
@@ -66,7 +67,7 @@ const ifThenRules = [
 	{
 		ifPattern: /_((w|acha|field)?hockey|w?(soccer|lacrosse|diving|tennis|rugby)|(soft|base|foot|broom|w?basket)ball|curling|quidditch)_/,
 		thenPattern: /_((p\d+(_x\d+(_[a-z]*)*)?\.)|(w?diving|broomball))/,
-		message: 'sports must end in _p# or _p#_x# if any split is needed'
+		message: 'sports must end in "_p#" or "_p#_x#" if any split is needed'
 	}, {
 		ifPattern: /_umass_/,
 		thenPattern: /_umass_(amherst|lowell)_/,

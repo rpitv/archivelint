@@ -36,17 +36,22 @@ describe('checkBadPatterns', function() {
 		assert.deepEqual(result, []);
 	});
 
-	it('should not allow filenames that contain a simple bad pattern', function() {
+	it('should not allow filenames that contain a simple bad pattern', function () {
 		var result = archivelint.checkBadPatterns('20121006_football_stl_q0.mov'); // real
-		assert.deepEqual(result, ["'_stl_' is a bad pattern, '_st_lawrence_' is preferred"]);
+		assert.deepEqual(result, ['"_stl_" is a bad pattern, "_st_lawrence_" is preferred']);
+	});
+
+	it('should not allow filenames that use the wrong split character', function () {
+		var result = archivelint.checkBadPatterns('20150228_cssa_2.mp4'); // real
+		assert.deepEqual(result, ['"_\\d+\\." is a bad pattern, "_p#" or "_p#_x#" is preferred']);
 	});
 
 	it('should flag all bad patterns in a filename', function() {
 		var result = archivelint.checkBadPatterns('20170529_hockey_acha_slu_stl_p1.mp4');
 		assert.deepEqual(result, [
-			"'_hockey_acha_' is a bad pattern, '_achahockey_' is preferred",
-			"'_stl_' is a bad pattern, '_st_lawrence_' is preferred",
-			"'_slu_' is a bad pattern, '_st_lawrence_' is preferred"
+			'"_hockey_acha_" is a bad pattern, "_achahockey_" is preferred',
+			'"_stl_" is a bad pattern, "_st_lawrence_" is preferred',
+			'"_slu_" is a bad pattern, "_st_lawrence_" is preferred'
 		]);
 	});
 
@@ -67,17 +72,17 @@ describe('checkBadPatterns', function() {
 
 	it('should not allow filenames that use the wrong pregame indicator', function () {
 		var result = archivelint.checkIfThen('20120908_football_alfred_pre.mpg'); // real
-		assert.deepEqual(result, ['sports must end in _p# or _p#_x# if any split is needed']);
+		assert.deepEqual(result, ['sports must end in "_p#" or "_p#_x#" if any split is needed']);
 	})
 
 	it('should not allow filenames that use the wrong split character', function () {
 		var result = archivelint.checkIfThen('20120908_football_alfred_q1.mpg'); // real
-		assert.deepEqual(result, ['sports must end in _p# or _p#_x# if any split is needed']);
+		assert.deepEqual(result, ['sports must end in "_p#" or "_p#_x#" if any split is needed']);
 	});
 
 	it('should not allow filenames that use the wrong intermission indicator', function () {
 		var result = archivelint.checkIfThen('20121020_football_hobart_q2_75.mov'); // real
-		assert.deepEqual(result, ['sports must end in _p# or _p#_x# if any split is needed']);
+		assert.deepEqual(result, ['sports must end in "_p#" or "_p#_x#" if any split is needed']);
 	});
 
 	it('should allow disambiguated umass', function () {

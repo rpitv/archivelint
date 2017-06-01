@@ -29,7 +29,7 @@ exports.checkBadPatterns = function(filename) {
 
 	patterns.badPatterns.forEach(function(badPattern) {
 		if (filename.match(badPattern[0])) {
-			ret.push("'" + String(badPattern[0]).slice(1, -1) + "' is a bad pattern, '" + badPattern[1] + "' is preferred");
+			ret.push('"' + String(badPattern[0]).slice(1, -1) + '" is a bad pattern, "' + badPattern[1] + '" is preferred');
 		}
 	});
 
@@ -49,4 +49,3 @@ exports.checkIfThen = function(filename) {
 	}
 	return ret;
 }
-
