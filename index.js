@@ -8,9 +8,9 @@ function checkFile(filename) {
 
 	for (var i = 0; i < checkers.length; i++) {
 		var func = archivelint[checkers[i]];
-		var results = func(filename);
+		var results = func(basename);
 		for (var j = 0; j < results.length; j++) {
-			console.log("%s: %s", filename, results[j]);	
+			console.log("%s: %s", basename, results[j]);	
 		}
 	}
 }
