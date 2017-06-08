@@ -72,17 +72,17 @@ describe('checkBadPatterns', function() {
 
 	it('should not allow filenames that use the wrong pregame indicator', function () {
 		var result = archivelint.checkIfThen('20120908_football_alfred_pre.mpg'); // real
-		assert.deepEqual(result, ['sports must end in "_p#" or "_p#_x#" if any split is needed']);
+		assert.deepEqual(result, ['sports must end in "_p#" or "_p#_x#" if split']);
 	})
 
 	it('should not allow filenames that use the wrong split character', function () {
 		var result = archivelint.checkIfThen('20120908_football_alfred_q1.mpg'); // real
-		assert.deepEqual(result, ['sports must end in "_p#" or "_p#_x#" if any split is needed']);
+		assert.deepEqual(result, ['sports must end in "_p#" or "_p#_x#" if split']);
 	});
 
 	it('should not allow filenames that use the wrong intermission indicator', function () {
 		var result = archivelint.checkIfThen('20121020_football_hobart_q2_75.mov'); // real
-		assert.deepEqual(result, ['sports must end in "_p#" or "_p#_x#" if any split is needed']);
+		assert.deepEqual(result, ['sports must end in "_p#" or "_p#_x#" if split']);
 	});
 
 	it('should allow disambiguated umass', function () {

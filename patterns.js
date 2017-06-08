@@ -7,6 +7,8 @@ const badPatterns = [
 	[/_hockeyclub_/, '_achahockey_'],
 	[/_club_hockey_/, '_achahockey_'],
 	[/_hockey_club_/, '_achahockey_'],
+	[/_wbb_/, '_wbasketball_'],
+	[/_bb_/, '_basketball_'],
 
 	[/_pre\./, '_p0'],
 	[/_pregame\./, '_p0'],
@@ -20,6 +22,8 @@ const badPatterns = [
 	[/_bc_/, '_boston_college_'],
 	[/_bu_/, '_boston_university_'],
 	[/_pei_/, '_upei_'],
+	[/_neu_/, '_northeastern_'],
+	[/_nu_/, '_northeastern_'],
 	[/_minnstate_/, '_minnesota_state_'],
 	[/_merch_/, '_usmma_'],
 	[/\d_lowell_/, '_umass_lowell_'],
@@ -27,10 +31,11 @@ const badPatterns = [
 	[/_rm_/, '_robert_morris_'],
 	[/_urochester_/, '_u_of_r_'],
 	[/_univ_rochester_/, '_u_of_r_'],
-	[/_rochester_/, '_u_of_r_" or "_rit_'],
+	[/\d_rochester_/, '_u_of_r_" or "_rit_'],
 	[/_univ_michigan_/, '_umich_'],
-	[/_michigan_/, '_umich_" or "_michigan_state_'],
+	[/\d_michigan_/, '_umich_" or "_michigan_state_'],
 	[/_u_of_m_/, '_umich_'],
+	[/_umichigan_/, '_umich_'],
 	[/_msu_/, '_minnesota_state_" or "_michigan_state_'],
 
 	[/_acapella/, '_acappella'],
@@ -49,7 +54,7 @@ const badPatterns = [
 	[/_rpa_drag\./, '_rpa_drag_show'],
 	[/_drag\./, '_rpa_drag_show'],
 	[/\d_drag_show/, '_rpa_drag_show'],
-	[/\d_drag/, '_rpa_drag_show'],
+	[/\d_drag\./, '_rpa_drag_show'],
 	[/_paksa_jashn\./, '_paksa_jashn_show'],
 	[/_paksa_jashn_p/, '_paksa_jashn_show_p'],
 	[/_jashn\./, '_paksa_jashn_show'],
@@ -60,6 +65,8 @@ const badPatterns = [
 	[/_diwali\./, '_isa_diwali_show'],
 	[/_diwali_p/, '_isa_diwali_show_p'],
 	[/\d_diwali_show/, '_isa_diwali_show'],
+	[/_upe_io_/, '_upeio_'],
+	[/_upe_i_o_/, '_upeio_'],
 ];
 
 // bad patterns to reject (complex)
@@ -67,7 +74,7 @@ const ifThenRules = [
 	{
 		ifPattern: /_((w|acha|field)?hockey|w?(soccer|lacrosse|diving|tennis|rugby)|(soft|base|foot|broom|w?basket)ball|curling|quidditch)_/,
 		thenPattern: /_((p\d+(_x\d+(_[a-z]*)*)?\.)|(w?diving|broomball))/,
-		message: 'sports must end in "_p#" or "_p#_x#" if any split is needed'
+		message: 'sports must end in "_p#" or "_p#_x#" if split'
 	}, {
 		ifPattern: /_umass_/,
 		thenPattern: /_umass_(amherst|lowell)_/,
